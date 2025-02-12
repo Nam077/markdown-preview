@@ -290,36 +290,28 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 - [ ] `),/^\d+.\s/.test(l)&&(w=`
 `+(parseInt(l)+1)+". "),rs(r,w)}else if(e.code&&e.code.toLowerCase()==="keyd"&&e.ctrlKey){Od(e);var B={start:r.selectionStart,end:r.selectionEnd},k=B;B=Zl({text:r.value,selection:B});var L=r.value.slice(B.start,B.end);c.setSelectionRange({start:B.end,end:B.end}),rs(r,`
 `+L),c.setSelectionRange({start:k.start,end:k.end})}else e.code&&e.code.toLowerCase()==="arrowup"&&e.altKey?Jx(e,-1):e.code&&e.code.toLowerCase()==="arrowdown"&&e.altKey&&Jx(e,1)}var RW=["prefixCls","onChange"],wW=["markdown","commands","fullscreen","preview","highlightEnable","extraCommands","tabSize","defaultTabEnable","dispatch"];function IW(e){var{prefixCls:t,onChange:n}=e,r=as(e,RW),i=R.useContext(eo),{markdown:s,commands:l,fullscreen:c,preview:f,highlightEnable:p,extraCommands:g,tabSize:h,defaultTabEnable:y,dispatch:S}=i;as(i,wW);var T=Te.useRef(null),C=Te.useRef(),A=Te.useRef({fullscreen:c,preview:f});R.useEffect(()=>{A.current={fullscreen:c,preview:f,highlightEnable:p}},[c,f,p]),R.useEffect(()=>{if(T.current&&S){var x=new lT(T.current);C.current=x,S({textarea:T.current,commandOrchestrator:x})}},[]);var N=x=>{NW(x,h,y),RO(x,[...l||[],...g||[]],C.current,S,A.current)};return R.useEffect(()=>(T.current&&T.current.addEventListener("keydown",N),()=>{T.current&&T.current.removeEventListener("keydown",N)}),[]),be.jsx("textarea",Le({autoComplete:"off",autoCorrect:"off",autoCapitalize:"off",spellCheck:!1},r,{ref:T,className:t+"-text-input "+(r.className?r.className:""),value:s,onChange:x=>{S&&S({markdown:x.target.value}),n&&n(x)}}))}var OW=["prefixCls","className","onScroll","renderTextarea"];function DW(e){var t=e||{},{prefixCls:n,className:r,onScroll:i,renderTextarea:s}=t,l=as(t,OW),{markdown:c,scrollTop:f,commands:p,minHeight:g,highlightEnable:h,extraCommands:y,dispatch:S}=R.useContext(eo),T=Te.useRef(null),C=Te.useRef(),A=Te.createRef();R.useEffect(()=>{var x={};A.current&&(x.textareaWarp=A.current||void 0,A.current.scrollTop=f||0),S&&S(Le({},x))},[]),R.useEffect(()=>{if(T.current&&S){var x=new lT(T.current);C.current=x,S({textarea:T.current,commandOrchestrator:x})}},[]);var N=h?{}:{WebkitTextFillColor:"initial",overflow:"auto"};return be.jsx("div",{ref:A,className:n+"-area "+(r||""),onScroll:i,children:be.jsx("div",{className:n+"-text",style:{minHeight:g},children:s?Te.cloneElement(s(Le({},l,{value:c,autoComplete:"off",autoCorrect:"off",spellCheck:"false",autoCapitalize:"off",className:n+"-text-input",style:{WebkitTextFillColor:"inherit",overflow:"auto"}}),{dispatch:S,onChange:l.onChange,shortcuts:RO,useContext:{commands:p,extraCommands:y,commandOrchestrator:C.current}}),{ref:T}):be.jsxs(R.Fragment,{children:[h&&be.jsx(JY,{prefixCls:n}),be.jsx(IW,Le({prefixCls:n},l,{style:N}))]})})})}function kW(e){var{prefixCls:t,groupName:n,commands:r,children:i}=e||{},{barPopup:s={}}=R.useContext(eo);return R.useMemo(()=>be.jsx("div",{className:t+"-toolbar-child "+(n&&s[n]?"active":""),onClick:l=>l.stopPropagation(),children:Array.isArray(r)?be.jsx(UO,Le({commands:r},e,{isChild:!0})):i}),[r,s,n,t])}function eN(e){var{prefixCls:t,overflow:n}=e,{fullscreen:r,preview:i,barPopup:s={},components:l,commandOrchestrator:c,dispatch:f}=R.useContext(eo),p=R.useRef("");function g(h,y){if(f){var S={barPopup:Le({},s)};h.keyCommand==="preview"&&(S.preview=h.value),h.keyCommand==="fullscreen"&&(S.fullscreen=!r),e.commands&&h.keyCommand==="group"?e.commands.forEach(T=>{y===T.groupName?S.barPopup[y]=!0:T.keyCommand&&(S.barPopup[T.groupName]=!1)}):(y||h.parent)&&Object.keys(S.barPopup||{}).forEach(T=>{S.barPopup[T]=!1}),Object.keys(S).length&&f(Le({},S)),c&&c.executeCommand(h)}}return R.useEffect(()=>{document&&n&&(r?document.body.style.overflow="hidden":(p.current||(p.current=window.getComputedStyle(document.body,null).overflow),document.body.style.overflow=p.current))},[r,p,n]),be.jsx("ul",{children:(e.commands||[]).map((h,y)=>{if(h.keyCommand==="divider")return be.jsx("li",Le({},h.liProps,{className:t+"-toolbar-divider"}),y);if(!h.keyCommand)return be.jsx(R.Fragment,{},y);var S=r&&h.keyCommand==="fullscreen"||h.keyCommand==="preview"&&i===h.value,T=h.children&&typeof h.children=="function"?h.children({getState:()=>c.getState(),textApi:c?c.textApi:void 0,close:()=>g({},h.groupName),execute:()=>g({execute:h.execute}),dispatch:f}):void 0,C=s&&i&&i==="preview"&&!/(preview|fullscreen)/.test(h.keyCommand),A=(l==null?void 0:l.toolbar)||h.render,N=A&&typeof A=="function"?A(h,!!C,g,y):null;return be.jsxs("li",Le({},h.liProps,{className:S?"active":"",children:[N&&Te.isValidElement(N)&&N,!N&&!h.buttonProps&&h.icon,!N&&h.buttonProps&&Te.createElement("button",Le({type:"button",key:y,disabled:C,"data-name":h.name},h.buttonProps,{onClick:x=>{x.stopPropagation(),g(h,h.groupName)}}),h.icon),h.children&&be.jsx(kW,{overflow:n,groupName:h.groupName,prefixCls:t,children:T,commands:Array.isArray(h.children)?h.children:void 0})]}),y)})})}function UO(e){e===void 0&&(e={});var{prefixCls:t,isChild:n,className:r}=e,{commands:i,extraCommands:s}=R.useContext(eo);return be.jsxs("div",{className:t+"-toolbar "+r,children:[be.jsx(eN,Le({},e,{commands:e.commands||i||[]})),!n&&be.jsx(eN,Le({},e,{commands:s||[]}))]})}function tN(e){var{hideToolbar:t,toolbarBottom:n,placement:r,overflow:i,prefixCls:s}=e;if(t||r==="bottom"&&!n||r==="top"&&n)return null;var l=n?"bottom":"";return be.jsx(UO,{prefixCls:s,overflow:i,className:l})}var LW=e=>{var{prefixCls:t,onChange:n}=e||{},r=R.useRef(null),i=R.useRef(),s=R.useRef(e.height);R.useEffect(()=>{s.current!==e.height&&(s.current=e.height)},[e.height]);function l(g){if(i.current){var h,y=g.clientY||((h=g.changedTouches[0])==null?void 0:h.clientY),S=i.current.height+y-i.current.dragY;S>=e.minHeight&&S<=e.maxHeight&&n&&n(i.current.height+(y-i.current.dragY))}}function c(){var g,h;i.current=void 0,document.removeEventListener("mousemove",l),document.removeEventListener("mouseup",c),(g=r.current)==null||g.removeEventListener("touchmove",l),(h=r.current)==null||h.removeEventListener("touchend",c)}function f(g){var h,y,S;g.preventDefault();var T=g.clientY||((h=g.changedTouches[0])==null?void 0:h.clientY);i.current={height:s.current,dragY:T},document.addEventListener("mousemove",l),document.addEventListener("mouseup",c),(y=r.current)==null||y.addEventListener("touchmove",l,{passive:!1}),(S=r.current)==null||S.addEventListener("touchend",c,{passive:!1})}R.useEffect(()=>{if(document){var g,h;(g=r.current)==null||g.addEventListener("touchstart",f,{passive:!1}),(h=r.current)==null||h.addEventListener("mousedown",f)}return()=>{if(document){var y;(y=r.current)==null||y.removeEventListener("touchstart",f),document.removeEventListener("mousemove",l)}}},[]);var p=R.useMemo(()=>be.jsx("svg",{viewBox:"0 0 512 512",height:"100%",children:be.jsx("path",{fill:"currentColor",d:"M304 256c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zm120-48c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48zm-336 0c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48z"})}),[]);return be.jsx("div",{className:t+"-bar",ref:r,children:p})},MW=["prefixCls","className","value","commands","commandsFilter","direction","extraCommands","height","enableScroll","visibleDragbar","highlightEnable","preview","fullscreen","overflow","previewOptions","textareaProps","maxHeight","minHeight","autoFocus","tabSize","defaultTabEnable","onChange","onStatistics","onHeightChange","hideToolbar","toolbarBottom","components","renderTextarea"];function FW(e){return e===void 0&&(e={}),Object.keys(e).forEach(t=>{e[t]=!1}),e}var BW=Te.forwardRef((e,t)=>{var n=e||{},{prefixCls:r="w-md-editor",className:i,value:s,commands:l=_W(),commandsFilter:c,direction:f,extraCommands:p=xW(),height:g=200,enableScroll:h=!0,visibleDragbar:y=typeof e.visiableDragbar=="boolean"?e.visiableDragbar:!0,highlightEnable:S=!0,preview:T="live",fullscreen:C=!1,overflow:A=!0,previewOptions:N={},textareaProps:x,maxHeight:w=1200,minHeight:B=100,autoFocus:k,tabSize:L=2,defaultTabEnable:P=!1,onChange:Y,onStatistics:H,onHeightChange:M,hideToolbar:X,toolbarBottom:ee=!1,components:q,renderTextarea:Q}=n,le=as(n,MW),G=l.map(Me=>c?c(Me,!1):Me).filter(Boolean),V=p.map(Me=>c?c(Me,!0):Me).filter(Boolean),[z,J]=R.useReducer(Lq,{markdown:s,preview:T,components:q,height:g,minHeight:B,highlightEnable:S,tabSize:L,defaultTabEnable:P,scrollTop:0,scrollTopPreview:0,commands:G,extraCommands:V,fullscreen:C,barPopup:{}}),v=R.useRef(null),W=R.useRef(null),oe=R.useRef(h);R.useImperativeHandle(t,()=>Le({},z,{container:v.current,dispatch:J})),R.useMemo(()=>oe.current=h,[h]),R.useEffect(()=>{var Me={};v.current&&(Me.container=v.current||void 0),Me.markdown=s||"",Me.barPopup={},J&&J(Le({},z,Me))},[]);var O=[i,"wmde-markdown-var",f?r+"-"+f:null,r,z.preview?r+"-show-"+z.preview:null,z.fullscreen?r+"-fullscreen":null].filter(Boolean).join(" ").trim();R.useMemo(()=>s!==z.markdown&&J({markdown:s||""}),[s,z.markdown]),R.useMemo(()=>T!==z.preview&&J({preview:T}),[T]),R.useMemo(()=>L!==z.tabSize&&J({tabSize:L}),[L]),R.useMemo(()=>S!==z.highlightEnable&&J({highlightEnable:S}),[S]),R.useMemo(()=>k!==z.autoFocus&&J({autoFocus:k}),[k]),R.useMemo(()=>C!==z.fullscreen&&J({fullscreen:C}),[C]),R.useMemo(()=>g!==z.height&&J({height:g}),[g]),R.useMemo(()=>g!==z.height&&M&&M(z.height,g,z),[g,M,z]),R.useMemo(()=>l!==z.commands&&J({commands:G}),[e.commands]),R.useMemo(()=>p!==z.extraCommands&&J({extraCommands:V}),[e.extraCommands]);var ue=R.useRef(),Ae=R.useRef("preview"),ce=R.useRef(!1);R.useMemo(()=>{ue.current=z.textareaWarp,z.textareaWarp&&(z.textareaWarp.addEventListener("mouseover",()=>{Ae.current="text"}),z.textareaWarp.addEventListener("mouseleave",()=>{Ae.current="preview"}))},[z.textareaWarp]);var _e=(Me,Qe)=>{if(oe.current){var yt=ue.current,kt=W.current?W.current:void 0;if(ce.current||(Ae.current=Qe,ce.current=!0),yt&&kt){var Gt=(yt.scrollHeight-yt.offsetHeight)/(kt.scrollHeight-kt.offsetHeight);Me.target===yt&&Ae.current==="text"&&(kt.scrollTop=yt.scrollTop/Gt),Me.target===kt&&Ae.current==="preview"&&(yt.scrollTop=kt.scrollTop*Gt);var gt=0;Ae.current==="text"?gt=yt.scrollTop||0:Ae.current==="preview"&&(gt=kt.scrollTop||0),J({scrollTop:gt})}}},Re=r+"-preview "+(N.className||""),Be=Me=>_e(Me,"preview"),De=R.useMemo(()=>be.jsx("div",{ref:W,className:Re,children:be.jsx(rT,Le({},N,{onScroll:Be,source:z.markdown||""}))}),[Re,N,z.markdown]),ot=(q==null?void 0:q.preview)&&(q==null?void 0:q.preview(z.markdown||"",z,J));ot&&Te.isValidElement(ot)&&(De=be.jsx("div",{className:Re,ref:W,onScroll:Be,children:ot}));var ft=Le({},le.style,{height:z.height||"100%"}),xt=()=>J({barPopup:Le({},FW(z.barPopup))}),Ze=Me=>J({height:Me}),nt=Me=>{if(Y&&Y(Me.target.value,Me,z),x&&x.onChange&&x.onChange(Me),z.textarea&&z.textarea instanceof HTMLTextAreaElement&&H){var Qe=new lT(z.textarea),yt=Qe.getState()||{};H(Le({},yt,{lineCount:Me.target.value.split(`
-`).length,length:Me.target.value.length}))}};return be.jsx(eo.Provider,{value:Le({},z,{dispatch:J}),children:be.jsxs("div",Le({ref:v,className:O},le,{onClick:xt,style:ft,children:[be.jsx(tN,{hideToolbar:X,toolbarBottom:ee,prefixCls:r,overflow:A,placement:"top"}),be.jsxs("div",{className:r+"-content",children:[/(edit|live)/.test(z.preview||"")&&be.jsx(DW,Le({className:r+"-input",prefixCls:r,autoFocus:k},x,{onChange:nt,renderTextarea:(q==null?void 0:q.textarea)||Q,onScroll:Me=>_e(Me,"text")})),/(live|preview)/.test(z.preview||"")&&De]}),y&&!z.fullscreen&&be.jsx(LW,{prefixCls:r,height:z.height,maxHeight:w,minHeight:B,onChange:Ze}),be.jsx(tN,{hideToolbar:X,toolbarBottom:ee,prefixCls:r,overflow:A,placement:"bottom"})]}))})}),PO=BW;PO.Markdown=rT;const UW=()=>{const[e,t]=R.useState(!1),[n,r]=R.useState(`# Hello World
+`).length,length:Me.target.value.length}))}};return be.jsx(eo.Provider,{value:Le({},z,{dispatch:J}),children:be.jsxs("div",Le({ref:v,className:O},le,{onClick:xt,style:ft,children:[be.jsx(tN,{hideToolbar:X,toolbarBottom:ee,prefixCls:r,overflow:A,placement:"top"}),be.jsxs("div",{className:r+"-content",children:[/(edit|live)/.test(z.preview||"")&&be.jsx(DW,Le({className:r+"-input",prefixCls:r,autoFocus:k},x,{onChange:nt,renderTextarea:(q==null?void 0:q.textarea)||Q,onScroll:Me=>_e(Me,"text")})),/(live|preview)/.test(z.preview||"")&&De]}),y&&!z.fullscreen&&be.jsx(LW,{prefixCls:r,height:z.height,maxHeight:w,minHeight:B,onChange:Ze}),be.jsx(tN,{hideToolbar:X,toolbarBottom:ee,prefixCls:r,overflow:A,placement:"bottom"})]}))})}),PO=BW;PO.Markdown=rT;const UW=()=>{const[e,t]=R.useState(!1),[n,r]=R.useState(`# Tán Crush Với React Hooks
 
-This is a markdown preview.
+## useContext Hook
 
-## Features
-- Full screen layout
-- Scrollable preview
-- Easy editing
-- Real-time preview
+### ⚙️ Cách hoạt động của useContext
+1️⃣ \`useContext\` kết nối component với Context Provider.  
+2️⃣ Khi giá trị trong \`Context\` thay đổi, component sẽ re-render với dữ liệu mới.  
+3️⃣ Không cần truyền \`props\` qua nhiều cấp, giúp code sạch hơn.  
 
-## Try it out!
-1. Click the Edit button
-2. Make some changes
-3. See the preview update
+💬 **Trong tình yêu:**  
+- Bạn có thể hỏi bạn thân của crush về sở thích của họ mà không cần hỏi trực tiếp.  
+- Cũng như chỉ đón nhận thông tin một cách có chọn lọc tránh bị crush cho ăn ngay quả "block" to to! 😂
+- Nhưng nếu bạn dựa quá nhiều vào "bạn thân" mà không chủ động tìm hiểu, có thể sẽ bị "hớ"! 
 
-## Example Content
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+### 💡 Lời khuyên quan trọng khi dùng useContext
+✅ **Về code:**  
+- Chỉ dùng \`useContext\` khi có dữ liệu toàn cục như theme, user info.  
 
-### Code Example
-\`\`\`javascript
-function hello() {
-  console.log("Hello World!");
-}
-\`\`\`
+✅ **Trong tình yêu:**  
+- Tán crush thì đừng nên solo quá, nhưng cũng đừng quá phụ thuộc vào bạn bè, hãy tự tìm hiểu và chủ động!
 
-### Table Example
-| Header 1 | Header 2 |
-|----------|----------|
-| Cell 1   | Cell 2   |
-| Cell 3   | Cell 4   |
+## Các hooks khác sẽ được cập nhật sớm...
 `);return be.jsxs("div",{className:"markdown-container",children:[be.jsx("div",{className:"window-container",children:be.jsxs("div",{className:"editor-window",children:[be.jsx("div",{className:"window-header",children:be.jsxs("div",{className:"traffic-lights",children:[be.jsx("span",{className:"light red"}),be.jsx("span",{className:"light yellow"}),be.jsx("span",{className:"light green"})]})}),be.jsx("div",{className:"preview-section","data-color-mode":"light",children:be.jsx(rT,{source:n})})]})}),be.jsx(gs,{className:"floating-edit-button",onClick:()=>t(!0),icon:null,children:"@nam077"}),be.jsx(Lr,{title:"Markdown Editor",open:e,onOk:()=>t(!1),onCancel:()=>t(!1),width:"80%",style:{top:20},styles:{body:{height:"calc(90vh - 110px)",padding:0}},children:be.jsx("div",{"data-color-mode":"light",style:{height:"100%"},children:be.jsx(PO,{value:n,onChange:i=>r(i||""),height:"100%",preview:"edit"})})}),be.jsx("style",{children:`
           .markdown-container {
             display: flex;
@@ -425,14 +417,26 @@ function hello() {
           .wmde-markdown code {
             font-size: 0.9em;
             background: #f6f8fa;
-            padding: 0.2em 0.4em;
+            padding: 0.02em 0.04em;
             border-radius: 3px;
           }
           .wmde-markdown pre {
             background: #f6f8fa;
-            padding: 16px;
+            padding: 4px;
             border-radius: 6px;
             font-size: 0.9em;
+          }
+          .wmde-markdown table {
+            border-collapse: collapse;
+            margin: 1em 0;
+          }
+          .wmde-markdown table td,
+          .wmde-markdown table th {
+            padding: 2px 10px;
+            border: 1px solid #ddd;
+          }
+          .wmde-markdown table tr:nth-child(2n) {
+            background-color: #f6f8fa;
           }
           /* Floating edit button */
           .floating-edit-button {
