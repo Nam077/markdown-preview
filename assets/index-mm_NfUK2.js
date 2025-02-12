@@ -398,32 +398,32 @@ function hello() {
           }
           /* Markdown preview styles */
           .wmde-markdown {
-            font-size: 17px;
+            font-size: 16px;
             line-height: 1.8;
             padding: 0 12px;
             margin-bottom: 40px;
           }
           .wmde-markdown h1 {
-            font-size: 2.2em;
-            margin-top: 1.8em;
-            margin-bottom: 1em;
-          }
-          .wmde-markdown h2 {
             font-size: 1.8em;
             margin-top: 1.6em;
             margin-bottom: 0.8em;
           }
-          .wmde-markdown h3 {
+          .wmde-markdown h2 {
             font-size: 1.5em;
             margin-top: 1.4em;
+            margin-bottom: 0.7em;
+          }
+          .wmde-markdown h3 {
+            font-size: 1.3em;
+            margin-top: 1.2em;
             margin-bottom: 0.6em;
           }
           .wmde-markdown p {
-            margin-bottom: 1.5em;
-            font-size: 1.1em;
+            margin-bottom: 1.2em;
+            font-size: 1em;
           }
           .wmde-markdown code {
-            font-size: 0.95em;
+            font-size: 0.9em;
             background: #f6f8fa;
             padding: 0.2em 0.4em;
             border-radius: 3px;
@@ -432,7 +432,7 @@ function hello() {
             background: #f6f8fa;
             padding: 16px;
             border-radius: 6px;
-            font-size: 0.95em;
+            font-size: 0.9em;
           }
           /* Floating edit button */
           .floating-edit-button {
